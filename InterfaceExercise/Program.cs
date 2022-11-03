@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InterfaceExercise
 {
@@ -6,39 +7,31 @@ namespace InterfaceExercise
     {
         static void Main(string[] args)
         {
-            //TODO Be sure to follow BEST PRACTICES when creating classes and interfaces
+            #region InterfaceRegion
 
-            //Create 2 Interfaces called IVehicle & ICompany
+            Car myFirstCar = new Car { Year = "2022", Make = "Ford", Model = "Mustang", HasTrunk = true, LowerDrivingPosition = true };
+            Truck myFirstTruck = new Truck { Year = "2010", Make = "Ford", Model = "Ranger", HasTruckBed = true, HasSideCart = true };
+            Suv myFirstSuv = new Suv { Year = "2023", Make = "Ford", Model = "Mustang Mach-E", CargoHoldSize = true , GreaterTowingCapacity = true};
 
-            //Create 3 classes called Car , Truck , & SUV
-
-            //In your IVehicle
+            List<IVehicle> vehicles = new List<IVehicle>();
             
-                /* Create 4 members that Car, Truck, & SUV all have in common.
-                 * Example: All vehicles have a number of wheels... for now..
-                 */
-            
+            vehicles.Add(myFirstCar);
+            vehicles.Add(myFirstTruck);
+            vehicles.Add(myFirstSuv);
 
-            //In ICompany
-            
-                /*Create 2 members that are specific to each every company
-                 * regardless of vehicle type.
-                 *
-                 *
-                 * Example: public string Logo { get; set; }
-                 */
+            foreach (IVehicle vehicle in vehicles)
+            {
+                Console.WriteLine($"Year: {vehicle.Year} Make: {vehicle.Make} Model: {vehicle.Model}");
+                Console.WriteLine();
+                Console.WriteLine();
+                vehicle.Drive();
+                vehicle.DriveDefault();
+                Console.WriteLine();
+            }
 
-            //In each of your car, truck, and suv classes
+            #endregion
 
-                /*Create 2 members that are specific to each class
-                 * Example: truck has a bed size while car has a trunk while suv has a cargo hold size
-                 *
-                 * Then, Set each class to inherit from both IVehicle and ICompany and implement their members.
-                 * 
-                 */
-
-            //Now, create objects of your 3 classes and give their members values;
-            //Creatively display and organize their values
+            Console.ReadLine();
         }
     }
 }
